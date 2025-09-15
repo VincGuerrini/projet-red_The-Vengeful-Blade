@@ -13,9 +13,10 @@ type Character struct {
 	ManaMax               int
 	ManaCurrent           int
 	Gold                  int
-	Inventory             []string
+	Inventory             []Item
 	MaxSlots              int
 	Equipment             []string
+	Weapon                []Equipment
 	Skills                []string
 	ExpCurrent            int
 	ExpMax                int
