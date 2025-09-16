@@ -1,3 +1,3 @@
-module the-vengeful-blade
+module TheVengefulBlade
 
 go 1.25.0
