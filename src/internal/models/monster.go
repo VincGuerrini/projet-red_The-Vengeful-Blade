@@ -83,3 +83,33 @@ func InitBucheron() Monster {
 		PatternState: 0,
 	}
 }
+
+// Je met les paternes d'attaque pour chacun de mes monstres
+
+func PatternSanglier(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " vous met un coup de museau"
+
+	if monster.PatternState == 3 { //
+		damage = monster.Attack + 4
+		description = monster.Name + " s'énèrve et vous met un coup charger"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
+
+func PatternLoup(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " vous mord"
+
+	if monster.PatternState == 3 {
+		damage = monster.Attack + 4
+		description = monster.Name + " vous attrape a la gorge"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
