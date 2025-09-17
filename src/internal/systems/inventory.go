@@ -34,3 +34,16 @@ func RemoveItem(c *models.Character, itemName string, qty int) error {
 	}
 	return err
 }
+
+func CountItem(c *models.Character, itemName string) int {}
+
+func UpgradeInventorySlot(c *models.Character) error {
+	var err error
+	if c.InventoryUpgradesUsed >= 3 {
+		err = errors.New("Inventaire déjà amélioré au maximum...")
+	} else {
+		c.MaxSlots = c.MaxSlots + 10
+		err = nil
+	}
+	return err
+}

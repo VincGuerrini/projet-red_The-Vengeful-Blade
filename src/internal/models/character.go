@@ -21,7 +21,7 @@ type Character struct {
 	ExpCurrent            int
 	ExpMax                int
 	InventoryCapacity     int
-	InventoryUpgradesUsed string
+	InventoryUpgradesUsed int
 	Initiative            string
 }
 
@@ -78,4 +78,6 @@ func SpendGold(c *Character, amount int) error {
 	return err
 }
 
-func LearnSkill(c *Character, skill string) error
+func LearnSkill(c *Character, skill string) error {
+
+}
