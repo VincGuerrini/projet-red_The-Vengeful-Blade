@@ -4,7 +4,7 @@ import (
 	"math/rand"
 )
 
-type Monster struct { // création de ma structure Monstre
+type Monster struct {
 	Name         string
 	HPmax        int
 	Attack       int
@@ -12,13 +12,11 @@ type Monster struct { // création de ma structure Monstre
 	PatternState int
 }
 
-// création de chaque entiter
-
 func InitSanglier() Monster {
 	return Monster{
 		Name:         "Sanglier",
 		HPmax:        15,
-		Attack:       rand.Intn(4) + 5, // Me permet a mon entiter de faire entre 5 et 9 dommage
+		Attack:       rand.Intn(5) + 5,
 		Initiative:   3,
 		PatternState: 0,
 	}
@@ -76,7 +74,7 @@ func InitEsprit() Monster {
 
 func InitBucheron() Monster {
 	return Monster{
-		Name:         "Bûcheron",
+		Name:         "Bucheron",
 		HPmax:        42,
 		Attack:       rand.Intn(6) + 7,
 		Initiative:   4,
@@ -84,102 +82,100 @@ func InitBucheron() Monster {
 	}
 }
 
-// Je met les paternes d'attaque pour chacun de mes monstres
+func PatternSanglier(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " vous met un coup de museau"
 
-func PatternSanglier(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " vous met un coup de museau"
-
-	if monster.PatternState == 3 { //
-		damage = monster.Attack + 4
-		description = monster.Name + " s'énèrve et vous met un coup charger"
-		monster.PatternState = 0
+	if m.PatternState == 3 {
+		damage += 4
+		desc = m.Name + " s'énerve et vous met un coup chargé"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }
 
-func PatternLoup(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " vous mord"
+func PatternLoup(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " vous mord"
 
-	if monster.PatternState == 3 {
-		damage = monster.Attack + 4
-		description = monster.Name + " vous attrape a la gorge"
-		monster.PatternState = 0
+	if m.PatternState == 3 {
+		damage += 4
+		desc = m.Name + " vous attrape à la gorge"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }
 
-func PatternSlime(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " se jette sur vous"
+func PatternSlime(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " se jette sur vous"
 
-	if monster.PatternState == 2 {
-		damage = monster.Attack + 4
-		description = monster.Name + " vous projette ses mecueuses"
-		monster.PatternState = 0
+	if m.PatternState == 2 {
+		damage += 4
+		desc = m.Name + " vous projette ses mucosités"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }
 
-func PatternTavernier(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " vous jette une pinte de bierre"
+func PatternTavernier(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " vous jette une pinte de bière"
 
-	if monster.PatternState == 3 {
-		damage = monster.Attack + 4
-		description = monster.Name + " vous casse une chaise sur la tête"
-		monster.PatternState = 0
+	if m.PatternState == 3 {
+		damage += 4
+		desc = m.Name + " vous casse une chaise sur la tête"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }
 
-func PatternOurs(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " vous mord"
+func PatternOurs(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " vous mord"
 
-	if monster.PatternState == 3 {
-		damage = monster.Attack + 4
-		description = monster.Name + " vous tranche avec ses griffes affutées"
-		monster.PatternState = 0
+	if m.PatternState == 3 {
+		damage += 4
+		desc = m.Name + " vous tranche avec ses griffes affûtées"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }
 
-func PatternEsprit(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " vous met une giffle"
+func PatternEsprit(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " vous met une gifle"
 
-	if monster.PatternState == 3 {
-		damage = monster.Attack + 2
-		description = monster.Name + " vous jette une malediction"
-		monster.PatternState = 0
+	if m.PatternState == 3 {
+		damage += 2
+		desc = m.Name + " vous jette une malédiction"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }
 
-func PatternBucheron(monster *Monster, turn int) (damage int, description string) {
-	damage = monster.Attack
-	description = monster.Name + " vous donne un coup de manche"
+func PatternBucheron(m *Monster, turn int) (int, string) {
+	damage := m.Attack
+	desc := m.Name + " vous donne un coup de manche"
 
-	if monster.PatternState == 3 {
-		damage = monster.Attack + 4
-		description = monster.Name + " vous jette une hâche dans la poitrine"
-		monster.PatternState = 0
+	if m.PatternState == 3 {
+		damage += 4
+		desc = m.Name + " vous jette une hache dans la poitrine"
+		m.PatternState = 0
 	} else {
-		monster.PatternState++
+		m.PatternState++
 	}
-	return damage, description
+	return damage, desc
 }

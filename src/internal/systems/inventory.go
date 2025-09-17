@@ -3,47 +3,54 @@ package systems
 import (
 	"TheVengefulBlade/internal/models"
 	"errors"
+	"strings"
 )
 
 func CanAddItem(c *models.Character, item models.Item) bool {
-	if len(c.Inventory) >= c.MaxSlots {
-		return false
-	} else {
-		return true
-	}
+	return len(c.Inventory) < c.MaxSlots
 }
 
 func AddItem(c *models.Character, item models.Item) error {
-	var err error
-	if len(c.Inventory) >= c.InventoryCapacity {
-		err = errors.New("Inventaire plein...")
-	} else {
-		c.Inventory = append(c.Inventory, item)
-		err = nil
+	if !CanAddItem(c, item) {
+		return errors.New("Inventaire plein...")
 	}
-	return err
+	c.Inventory = append(c.Inventory, item)
+	return nil
 }
 
 func RemoveItem(c *models.Character, itemName string, qty int) error {
-	err := errors.New("Objet introuvable...")
-	for i := 0; i < len(c.Inventory); i++ {
-		if itemName == c.Inventory[i].Name {
-			err = nil
-			break
+	itemName = strings.ToLower(itemName)
+	for i, item := range c.Inventory {
+		if strings.ToLower(item.Name) == itemName {
+			if item.Qty > qty {
+				c.Inventory[i].Qty -= qty
+			} else if item.Qty == qty {
+				c.Inventory = append(c.Inventory[:i], c.Inventory[i+1:]...)
+			} else {
+				return errors.New("Quantité insuffisante...")
+			}
+			return nil
 		}
 	}
-	return err
+	return errors.New("Objet introuvable...")
 }
 
-func CountItem(c *models.Character, itemName string) int {}
+func CountItem(c *models.Character, itemName string) int {
+	count := 0
+	itemName = strings.ToLower(itemName)
+	for _, item := range c.Inventory {
+		if strings.ToLower(item.Name) == itemName {
+			count += item.Qty
+		}
+	}
+	return count
+}
 
 func UpgradeInventorySlot(c *models.Character) error {
-	var err error
 	if c.InventoryUpgradesUsed >= 3 {
-		err = errors.New("Inventaire déjà amélioré au maximum...")
-	} else {
-		c.MaxSlots = c.MaxSlots + 10
-		err = nil
+		return errors.New("Inventaire déjà amélioré au maximum...")
 	}
-	return err
+	c.MaxSlots += 10
+	c.InventoryUpgradesUsed++
+	return nil
 }

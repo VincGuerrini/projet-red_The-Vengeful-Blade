@@ -12,6 +12,7 @@ type Item struct {
 	Stackable   bool
 	Weight      int
 	Effect      int
+	Qty         int
 }
 
 var Potion = Item{
@@ -19,116 +20,119 @@ var Potion = Item{
 	Type:        "Consommable",
 	Description: "Petite potion qui permet de récupérer 25 PV",
 	Price:       15,
-	Stackable:   false,
+	Stackable:   true,
 	Weight:      2,
-	Effect:      +25,
+	Effect:      25,
 }
 
 var Poison = Item{
 	Name:        "Poison simple",
 	Type:        "Consommable",
-	Description: "Petite fiole d’un poison très corrosif qui retire 5 PV par tour à l’adversaire",
+	Description: "Fiole de poison qui retire 5 PV par tour à l’adversaire",
 	Price:       10,
-	Stackable:   false,
+	Stackable:   true,
 	Weight:      2,
 	Effect:      -5,
 }
 
-var Viandedesanglier = Item{
+var ViandeDeSanglier = Item{
 	Name:        "Viande de sanglier",
 	Type:        "Ressources et Matériaux",
-	Description: "Viande de sanglier recupéré pour le chien",
-	Stackable:   false,
+	Description: "Viande de sanglier récupérée pour le chien",
+	Price:       0,
+	Stackable:   true,
 	Weight:      5,
 }
 
 var Os = Item{
 	Name:        "Os",
-	Type:        "Ressources Est Matériaux",
-	Description: "Os remie par le chien, aller le donner au tavernier",
+	Type:        "Ressources et Matériaux",
+	Description: "Os remis par le chien, à donner au tavernier",
+	Price:       0,
+	Stackable:   true,
 }
 
-var Peaudesanglier = Item{
+var PeauDeSanglier = Item{
 	Name:        "Peau de sanglier",
-	Type:        "Ressources est matériaux",
-	Description: "Peau des sangliers que l'on a dépeusé",
+	Type:        "Ressources et Matériaux",
+	Description: "Peau de sanglier dépeçée",
 	Price:       5,
 	Stackable:   true,
 	Weight:      1,
 }
 
-var Fourure = Item{
-	Name:        "Fourrure d'animeaux",
-	Type:        "Ressources Est Matériaux",
-	Description: "Fourrure d'anieaux depeusés",
+var Fourrure = Item{
+	Name:        "Fourrure d'animaux",
+	Type:        "Ressources et Matériaux",
+	Description: "Fourrure d'animaux dépeçés",
 	Price:       10,
 	Stackable:   true,
 	Weight:      3,
 }
 
-var Epeev1 = Item{
-	Name:        "Épee simple",
+var EpeeV1 = Item{
+	Name:        "Épée simple",
 	Type:        "Arme et armure",
-	Description: "Épee trouvé en sortant de prison, elle parait banale et meriterais un aigisage",
+	Description: "Épée trouvée en sortant de prison, elle paraît banale et mériterait un aiguisage",
 	Stackable:   false,
 	Weight:      3,
 	Effect:      rand.Intn(3) + 3,
 }
 
-var Epeev2 = Item{
-	Name:        "Épee robuste",
+var EpeeV2 = Item{
+	Name:        "Épée robuste",
 	Type:        "Arme et armure",
-	Description: "Épee qui a été restoré grace au cuire de sanglier, elle est tranchante mais elle meriterais encore une affinage",
+	Description: "Épée restaurée grâce au cuir de sanglier, tranchante mais encore améliorable",
 	Stackable:   false,
 	Weight:      4,
 	Effect:      rand.Intn(4) + 5,
 }
 
-var Epeev3 = Item{
-	Name:        "Épee spirituelle",
+var EpeeV3 = Item{
+	Name:        "Épée spirituelle",
 	Type:        "Arme et armure",
-	Description: "cette épee d'apparance si banale caché un si grand pouvoire, elle n'est pas perfect mais elle est bien plus puissante cas l'originie",
+	Description: "Épée banale mais cachant un grand pouvoir, pas parfaite mais puissante",
 	Stackable:   false,
 	Weight:      5,
 	Effect:      rand.Intn(6) + 8,
 }
 
-var Épeev4 = Item{
-	Name:      "Épee vengeresse",
+var EpeeV4 = Item{
+	Name:      "Épée vengeresse",
 	Type:      "Arme et armure",
 	Stackable: false,
 	Weight:    5,
 	Effect:    50,
 }
 
-var Lancev1 = Item{
+var LanceV1 = Item{
 	Name:        "Lance simple",
 	Type:        "Arme et armure",
-	Description: "Lance banale trouvée en sortant de prison, complètement rouillée et qui mériterait un affûtage ",
+	Description: "Lance banale trouvée en sortant de prison, rouillée et mériterait un affûtage",
 	Stackable:   false,
 	Weight:      3,
 	Effect:      rand.Intn(3) + 3,
 }
 
-var Lancev2 = Item{
+var LanceV2 = Item{
 	Name:        "Lance robuste",
 	Type:        "Arme et armure",
-	Description: "Lance qui a eu un bonne aigisage bien merrité, elle meriterais encore une ameliration au niveau du manche",
+	Description: "Lance aiguisée grâce au cuir de sanglier, encore améliorable",
 	Stackable:   false,
 	Weight:      4,
 	Effect:      rand.Intn(4) + 5,
 }
 
-var Lancev3 = Item{
+var LanceV3 = Item{
 	Name:        "Lance spirituelle",
 	Type:        "Arme et armure",
-	Description: "cette lance caché un si grand pouvoire, cela est inimajinable, elle n'est pas encore parfaite mais elle est devenue si puissante",
+	Description: "Lance puissante, pas encore parfaite",
 	Stackable:   false,
 	Weight:      5,
 	Effect:      rand.Intn(6) + 8,
 }
 
-var Lancev4 = Item{
+var LanceV4 = Item{
 	Name:      "Lance vengeresse",
 	Type:      "Arme et armure",
 	Stackable: false,
@@ -136,34 +140,34 @@ var Lancev4 = Item{
 	Effect:    50,
 }
 
-var Daguev1 = Item{
+var DagueV1 = Item{
 	Name:        "Dague simple",
 	Type:        "Arme et armure",
-	Description: "Dague au tranchant aproximatif trouvé en sortant de prison, elle parais bien banale est mériterait un affûtage",
+	Description: "Dague approximative, mériterait un affûtage",
 	Stackable:   false,
 	Weight:      3,
 	Effect:      rand.Intn(3) + 3,
 }
 
-var Daguev2 = Item{
+var DagueV2 = Item{
 	Name:        "Dague robuste",
 	Type:        "Arme et armure",
-	Description: "Dague au tranchant aproximatif trouvé en sortant de prison, elle parais bien banale est mériterait un affûtage",
+	Description: "Dague légèrement améliorée mais encore perfectible",
 	Stackable:   false,
 	Weight:      4,
 	Effect:      rand.Intn(4) + 5,
 }
 
-var Daguev3 = Item{
+var DagueV3 = Item{
 	Name:        "Dague spirituelle",
 	Type:        "Arme et armure",
-	Description: "cette dague caché un pouvoir uncomensurable c'est complettement fou, elle n'est pas parfaite mais incroyable quand meme",
+	Description: "Dague puissante mais pas parfaite",
 	Stackable:   false,
 	Weight:      5,
 	Effect:      rand.Intn(6) + 8,
 }
 
-var Daguev4 = Item{
+var DagueV4 = Item{
 	Name:      "Dague vengeresse",
 	Type:      "Arme et armure",
 	Stackable: false,
