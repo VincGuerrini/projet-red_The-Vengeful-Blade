@@ -1,5 +1,9 @@
 package models
 
+import (
+	"math/rand"
+)
+
 type Item struct {
 	Name        string
 	Type        string
@@ -7,7 +11,7 @@ type Item struct {
 	Price       int
 	Stackable   bool
 	Weight      int
-	Effect      string
+	Effect      int
 }
 
 var Potion = Item{
@@ -17,7 +21,7 @@ var Potion = Item{
 	Price:       15,
 	Stackable:   false,
 	Weight:      2,
-	Effect:      "+25pv",
+	Effect:      +25,
 }
 
 var Poison = Item{
@@ -27,7 +31,7 @@ var Poison = Item{
 	Price:       10,
 	Stackable:   false,
 	Weight:      2,
-	Effect:      "-5pv par tour",
+	Effect:      -5,
 }
 
 var Viandedesanglier = Item{
@@ -68,7 +72,7 @@ var Epeev1 = Item{
 	Description: "Épee trouvé en sortant de prison, elle parait banale et meriterais un aigisage",
 	Stackable:   false,
 	Weight:      3,
-	Effect:      "-5",
+	Effect:      rand.Intn(3) + 3,
 }
 
 var Epeev2 = Item{
@@ -77,7 +81,7 @@ var Epeev2 = Item{
 	Description: "Épee qui a été restoré grace au cuire de sanglier, elle est tranchante mais elle meriterais encore une affinage",
 	Stackable:   false,
 	Weight:      4,
-	Effect:      "-7",
+	Effect:      rand.Intn(4) + 5,
 }
 
 var Epeev3 = Item{
@@ -86,7 +90,15 @@ var Epeev3 = Item{
 	Description: "cette épee d'apparance si banale caché un si grand pouvoire, elle n'est pas perfect mais elle est bien plus puissante cas l'originie",
 	Stackable:   false,
 	Weight:      5,
-	Effect:      "",
+	Effect:      rand.Intn(6) + 8,
+}
+
+var Épeev4 = Item{
+	Name:      "Épee vengeresse",
+	Type:      "Arme et armure",
+	Stackable: false,
+	Weight:    5,
+	Effect:    50,
 }
 
 var Lancev1 = Item{
@@ -95,7 +107,7 @@ var Lancev1 = Item{
 	Description: "Lance banale trouvée en sortant de prison, complètement rouillée et qui mériterait un affûtage ",
 	Stackable:   false,
 	Weight:      3,
-	Effect:      "-5",
+	Effect:      rand.Intn(3) + 3,
 }
 
 var Lancev2 = Item{
@@ -104,7 +116,7 @@ var Lancev2 = Item{
 	Description: "Lance qui a eu un bonne aigisage bien merrité, elle meriterais encore une ameliration au niveau du manche",
 	Stackable:   false,
 	Weight:      4,
-	Effect:      "-7",
+	Effect:      rand.Intn(4) + 5,
 }
 
 var Lancev3 = Item{
@@ -113,7 +125,15 @@ var Lancev3 = Item{
 	Description: "cette lance caché un si grand pouvoire, cela est inimajinable, elle n'est pas encore parfaite mais elle est devenue si puissante",
 	Stackable:   false,
 	Weight:      5,
-	Effect:      "",
+	Effect:      rand.Intn(6) + 8,
+}
+
+var Lancev4 = Item{
+	Name:      "Lance vengeresse",
+	Type:      "Arme et armure",
+	Stackable: false,
+	Weight:    5,
+	Effect:    50,
 }
 
 var Daguev1 = Item{
@@ -122,7 +142,7 @@ var Daguev1 = Item{
 	Description: "Dague au tranchant aproximatif trouvé en sortant de prison, elle parais bien banale est mériterait un affûtage",
 	Stackable:   false,
 	Weight:      3,
-	Effect:      "-3",
+	Effect:      rand.Intn(3) + 3,
 }
 
 var Daguev2 = Item{
@@ -131,7 +151,7 @@ var Daguev2 = Item{
 	Description: "Dague au tranchant aproximatif trouvé en sortant de prison, elle parais bien banale est mériterait un affûtage",
 	Stackable:   false,
 	Weight:      4,
-	Effect:      "-7",
+	Effect:      rand.Intn(4) + 5,
 }
 
 var Daguev3 = Item{
@@ -140,5 +160,13 @@ var Daguev3 = Item{
 	Description: "cette dague caché un pouvoir uncomensurable c'est complettement fou, elle n'est pas parfaite mais incroyable quand meme",
 	Stackable:   false,
 	Weight:      5,
-	Effect:      "",
+	Effect:      rand.Intn(6) + 8,
+}
+
+var Daguev4 = Item{
+	Name:      "Dague vengeresse",
+	Type:      "Arme et armure",
+	Stackable: false,
+	Weight:    5,
+	Effect:    50,
 }
