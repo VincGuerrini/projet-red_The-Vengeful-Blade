@@ -113,3 +113,73 @@ func PatternLoup(monster *Monster, turn int) (damage int, description string) {
 	}
 	return damage, description
 }
+
+func PatternSlime(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " se jette sur vous"
+
+	if monster.PatternState == 2 {
+		damage = monster.Attack + 4
+		description = monster.Name + " vous projette ses mecueuses"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
+
+func PatternTavernier(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " vous jette une pinte de bierre"
+
+	if monster.PatternState == 3 {
+		damage = monster.Attack + 4
+		description = monster.Name + " vous casse une chaise sur la tête"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
+
+func PatternOurs(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " vous mord"
+
+	if monster.PatternState == 3 {
+		damage = monster.Attack + 4
+		description = monster.Name + " vous tranche avec ses griffes affutées"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
+
+func PatternEsprit(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " vous met une giffle"
+
+	if monster.PatternState == 3 {
+		damage = monster.Attack + 2
+		description = monster.Name + " vous jette une malediction"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
+
+func PatternBucheron(monster *Monster, turn int) (damage int, description string) {
+	damage = monster.Attack
+	description = monster.Name + " vous donne un coup de manche"
+
+	if monster.PatternState == 3 {
+		damage = monster.Attack + 4
+		description = monster.Name + " vous jette une hâche dans la poitrine"
+		monster.PatternState = 0
+	} else {
+		monster.PatternState++
+	}
+	return damage, description
+}
